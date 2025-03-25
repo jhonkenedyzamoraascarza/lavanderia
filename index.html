@@ -3,1090 +3,1864 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detailing Expert</title>
+    <title>Detailing Expert | Servicios Profesionales de Detallado Automotriz</title>
+    <meta name="description" content="Servicios profesionales de detailing automotriz, lavado especializado, abrillantado y más. Deja tu vehículo como nuevo con nuestros expertos.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos generales */
-        body { 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Cambria', serif; 
-            color: #fff; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            min-height: 100vh; 
-            background-color: #121212; 
+        :root {
+            --primary-color: #ffcc00;
+            --secondary-color: #121212;
+            --accent-color: #e6b800;
+            --text-color: #ffffff;
+            --dark-bg: #1a1a1a;
+            --light-bg: #2a2a2a;
+            --transition: all 0.3s ease;
         }
-
-        /* Fondo superior con efecto parallax */
-        .fondo-superior { 
-            position: relative; 
-            width: 100%; 
-            height: 200px; 
-            background-image: url('https://i.postimg.cc/qBy5Sn2Z/estacion-lavado-autos-1303-22306.avif'); 
-            background-size: cover; 
-            background-position: center; 
-            background-attachment: fixed; 
-            display: flex; 
-            align-items: flex-end; 
-            justify-content: center; 
-            padding-bottom: 20px; 
-            overflow: hidden; 
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-
-        /* Capa oscura transparente */
-        .fondo-superior::before { 
-            content: ''; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0, 0, 0, 0.5); 
-            z-index: 1; 
+        
+        body {
+            font-family: 'Cambria', serif;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-
-        /* Contenedor del logotipo y menú superior */
-        .header { 
-            width: 100%; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            position: relative; 
-            z-index: 2; 
+        
+        /* Header y navegación */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9);
+            transition: var(--transition);
         }
-
-        /* Estilos del logotipo superior */
-        .logo { 
-            width: 300px; 
-            height: auto; 
-            margin-bottom: 10px; 
+        
+        .header.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-
-        /* Estilos del menú superior */
-        .menu-superior { 
-            display: flex; 
-            gap: 10px; 
-            flex-wrap: wrap; 
-            justify-content: center; 
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-
-        .menu-superior a { 
-            color: #fff; 
-            text-decoration: none; 
-            font-size: 1.2rem; 
-            transition: all 0.3s ease; 
-            padding-right: 10px; 
-            margin-right: 10px; 
-            position: relative; 
+        
+        .logo {
+            height: 70px; /* Cambiado de 60px a 70px */
+            transition: var(--transition);
         }
-
-        /* Barra entre las opciones del menú */
-        .menu-superior a:not(:last-child)::after { 
-            content: ''; 
-            position: absolute; 
-            right: 0; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            width: 1px; 
-            height: 60%; 
-            background-color: #fff; 
+        
+        .logo:hover {
+            transform: scale(1.05);
         }
-
-        .menu-superior a:hover { 
-            color: #ffcc00; 
-            font-size: 1.3rem; 
-            transform: scale(1.1); 
+        
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
-
-        /* Íconos de redes sociales */
-        .redes-sociales { 
-            position: fixed; 
-            top: 50%; 
-            right: 20px; 
-            transform: translateY(-50%); 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-            z-index: 1000; 
+        
+        .menu-superior {
+            display: flex;
+            gap: 25px;
         }
-
-        .redes-sociales a { 
-            display: block; 
-            transition: transform 0.3s ease; 
+        
+        .menu-superior a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
         }
-
-        .redes-sociales a:hover { 
-            transform: scale(1.1); 
+        
+        .menu-superior a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
         }
-
-        .redes-sociales img { 
-            width: 40px; 
-            height: auto; 
+        
+        .menu-superior a:hover {
+            color: var(--primary-color);
         }
-
-        /* Contenido de las secciones */
-        .contenido { 
-            padding: 20px; 
-            text-align: center; 
-            width: 80%; 
-            max-width: 1200px; 
-            margin: 20px auto; 
-            margin-bottom: 200px; 
+        
+        .menu-superior a:hover::after {
+            width: 100%;
         }
-
-        /* Estilos para las imágenes */
-        .galeria { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 30px; 
-            margin-top: 20px; 
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://i.postimg.cc/qBy5Sn2Z/estacion-lavado-autos-1303-22306.avif') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 0;
         }
-
-        .galeria img { 
-            width: 100%; 
-            max-width: 300px; 
-            height: auto; 
-            border-radius: 10px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-            transition: transform 0.3s ease; 
-            object-fit: cover; 
+        
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out;
         }
-
-        .galeria img:hover { 
-            transform: scale(1.05); 
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-
-        /* Contenedor de las imágenes en fila */
-        .contenedor-imagenes { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 20px; 
-            width: 100%; 
-            max-width: 1200px; 
-            margin: 20px auto; 
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
         }
-
-        /* Estilos para la imagen central */
-        .imagen-central { 
-            width: 100%; 
-            max-width: 300px; 
-            height: 400px; 
-            border-radius: 10px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-            position: relative; 
-            overflow: hidden; 
-            cursor: pointer; 
+        
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
         }
-
-        /* Estilos para las imágenes dentro del contenedor */
-        .imagen-central img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            transition: opacity 0.5s ease; 
-            border-radius: 10px; 
+        
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
         }
-
-        /* Imagen principal (visible por defecto) */
-        .imagen-principal { 
-            opacity: 1; 
-            z-index: 1; 
+        
+        /* Servicios */
+        .servicios {
+            padding: 80px 5%;
+            background-color: var(--dark-bg);
         }
-
-        /* Imagen hover (oculta por defecto) */
-        .imagen-hover { 
-            opacity: 0; 
-            z-index: 2; 
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
         }
-
-        /* Cambiar la imagen al hacer hover */
-        .imagen-central:hover .imagen-principal { 
-            opacity: 0; 
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto;
         }
-
-        .imagen-central:hover .imagen-hover { 
-            opacity: 1; 
+        
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        /* Estilos para los títulos de las imágenes */
-        .titulo-imagen { 
-            position: absolute; 
-            top: 20px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            font-size: 1.5rem; 
-            font-weight: bold; 
-            color: #fff; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
-            z-index: 3; 
-            text-align: center; 
-            background-color: rgba(0, 0, 0, 0.5); 
-            padding: 10px 20px; 
-            border-radius: 10px; 
+        
+        .servicio-card {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
         }
-
-        /* Estilos para la descripción de las imágenes */
-        .descripcion-imagen { 
-            position: absolute; 
-            bottom: 20px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            font-size: 1rem; 
-            color: #fff; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
-            z-index: 3; 
-            text-align: center; 
-            background-color: rgba(0, 0, 0, 0.5); 
-            padding: 10px 20px; 
-            border-radius: 10px; 
-            width: 90%; 
+        
+        .servicio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
-
-        /* Botón para volver a la página principal */
-        .boton-volver { 
-            display: inline-block; 
-            margin-top: 20px; 
-            padding: 10px 20px; 
-            background-color: #ffcc00; 
-            color: #121212; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            transition: background-color 0.3s ease; 
+        
+        .servicio-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
         }
-
-        .boton-volver:hover { 
-            background-color: #e6b800; 
+        
+        .servicio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1;
         }
-
-        /* Estilos para las opciones de menú centrales */
-        .opciones-menu { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-            margin-top: 20px; 
+        
+        .servicio-img img.hover-image {
+            opacity: 0;
         }
-
-        .opciones-menu a { 
-            color: #fff; 
-            text-decoration: none; 
-            font-size: 1.2rem; 
-            padding: 10px 20px; 
-            background-color: rgba(255, 255, 255, 0.1); 
-            border-radius: 5px; 
-            transition: background-color 0.3s ease; 
+        
+        .servicio-card:hover .servicio-img img.main-image {
+            opacity: 0;
         }
-
-        .opciones-menu a:hover { 
-            background-color: rgba(255, 255, 255, 0.2); 
+        
+        .servicio-card:hover .servicio-img img.hover-image {
+            opacity: 1;
         }
-
-        /* Contenedor de los logos inferiores */
-        .logos-inferiores { 
-            position: fixed; 
-            bottom: 10px; 
-            left: 0; 
-            right: 0; 
-            display: flex; 
-            justify-content: space-between; 
-            padding: 0 20px; 
-            z-index: 1000; 
-            background-color: #121212; 
-            padding-bottom: 20px; 
+        
+        .servicio-content {
+            padding: 20px;
         }
-
-        /* Estilos de los logos inferiores */
-        .logos-inferiores img { 
-            width: 150px; 
-            height: auto; 
-            transition: transform 0.3s ease; 
+        
+        .servicio-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
-
-        .logos-inferiores img:hover { 
-            transform: scale(1.1); 
+        
+        .servicio-content ul {
+            list-style-type: none;
+            margin-bottom: 20px;
         }
-
-        /* Contenedor del logo central y la información */
-        .logo-info { 
-            text-align: center; 
-            margin-top: 40px; 
-            margin-bottom: 40px; 
-            width: 100%; 
+        
+        .servicio-content li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
         }
-
-        /* Nuevo contenedor para los logos */
-        .logo-container { 
-            position: relative; 
-            margin-bottom: 20px; 
+        
+        .servicio-content li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
         }
-
-        /* Estilos específicos para el logo de Chevrolet */
-        .logo-chevrolet { 
-            position: fixed; 
-            bottom: 10px; 
-            right: 10px; 
-            width: 150px; 
-            height: auto; 
-            cursor: pointer; 
-            transition: transform 0.3s ease; 
+        
+        .precio {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 15px 0;
+            display: block;
         }
-
-        .logo-chevrolet:hover { 
-            transform: scale(1.1); 
+        
+        /* Testimonios */
+        .testimonios {
+            padding: 80px 5%;
+            background-color: var(--secondary-color);
+            position: relative;
         }
-
-        /* Asegurar que el logo central mantenga su tamaño y posición */
-        .logo-central { 
-            width: 250px; 
-            height: auto; 
+        
+        .testimonios::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.postimg.cc/qv8SKKv3/loguitofinal.png') center/contain no-repeat;
+            opacity: 0.05;
+            z-index: 0;
         }
-
-        /* Aumentar el tamaño de las letras en la parte inferior */
-        .logo-info p { 
-            font-size: 1.2rem; 
-            margin: 10px 0; 
+        
+        .testimonios-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        /* Estilos para el logo de teléfono */
-        .telefono-logo { 
-            width: 20px; 
-            height: auto; 
-            vertical-align: middle; 
-            margin-right: 10px; 
+        
+        .testimonial-form {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
         }
-
-        /* Estilos para el texto centrado y ordenado */
-        .texto-centrado { 
-            text-align: center; 
-            max-width: 800px; 
-            margin: 0 auto; 
-            padding: 20px; 
-            line-height: 1.6; 
-            font-size: 1.1rem; 
+        
+        .form-group {
+            margin-bottom: 20px;
         }
-
-        .texto-centrado h2 { 
-            font-size: 2rem; 
-            margin-bottom: 20px; 
-            color: #ffcc00; 
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
-
-        .texto-centrado p { 
-            margin-bottom: 15px; 
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: var(--text-color);
+            font-family: inherit;
+            transition: var(--transition);
         }
-
-        .texto-centrado strong { 
-            color: #ffcc00; 
+        
+        textarea.form-control {
+            min-height: 150px;
         }
-
-        /* Media queries para dispositivos móviles */
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Galería por servicios */
+        .galeria-section {
+            padding: 80px 5%;
+            background-color: var(--dark-bg);
+        }
+        
+        .galeria-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .galeria-menu button {
+            padding: 10px 20px;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .galeria-menu button:hover,
+        .galeria-menu button.active {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .galeria-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+            cursor: pointer;
+        }
+        
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .galeria-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .galeria-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .galeria-item:hover .galeria-overlay {
+            opacity: 1;
+        }
+        
+        .galeria-overlay i {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        /* Modal de galería */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow: auto;
+        }
+        
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+        }
+        
+        .modal-img {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--text-color);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Contacto */
+        .contacto {
+            padding: 80px 5%;
+            background-color: var(--secondary-color);
+        }
+        
+        .contacto-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contacto-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contacto-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+        
+        .contacto-text h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .contacto-form {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        /* Preguntas Frecuentes */
+        .preguntas-frecuentes {
+            padding: 80px 5%;
+            background-color: var(--dark-bg);
+        }
+        
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .faq-category {
+            margin-bottom: 40px;
+        }
+        
+        .faq-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .faq-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            margin-top: 8px;
+            text-decoration: none;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            padding: 50px 5% 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-bg);
+            border-radius: 50%;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Clases utilitarias */
+        .hidden {
+            display: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .logo { 
-                width: 200px; 
+            .nav-toggle {
+                display: block;
             }
-
-            .menu-superior { 
-                flex-direction: column; 
-                gap: 5px; 
+            
+            .menu-superior {
+                position: fixed;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                clip-path: circle(0px at 90% -10%);
+                transition: clip-path 0.5s ease-out;
             }
-
-            .menu-superior a { 
-                font-size: 1rem; 
-                padding-right: 0; 
-                margin-right: 0; 
+            
+            .menu-superior.active {
+                clip-path: circle(1000px at 90% -10%);
             }
-
-            .menu-superior a:not(:last-child)::after { 
-                display: none; 
+            
+            .menu-superior a {
+                padding: 15px 0;
+                font-size: 1.2rem;
             }
-
-            .redes-sociales { 
-                top: 20px; 
-                right: 10px; 
-                flex-direction: row; 
-                gap: 10px; 
+            
+            .hero h1 {
+                font-size: 2rem;
             }
-
-            .redes-sociales img { 
-                width: 30px; 
+            
+            .hero p {
+                font-size: 1rem;
             }
-
-            .contenido { 
-                width: 90%; 
-                padding: 10px; 
+            
+            .servicios-grid {
+                grid-template-columns: 1fr;
             }
-
-            .contenedor-imagenes { 
-                flex-direction: column; 
-                align-items: center; 
+            
+            .contacto-container {
+                grid-template-columns: 1fr;
             }
-
-            .imagen-central { 
-                width: 100%; 
-                max-width: 100%; 
-                height: 300px; 
+            
+            .contacto-form {
+                order: -1;
             }
-
-            .logo-central { 
-                width: 200px; 
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
             }
-
-            .logo-info p { 
-                font-size: 1rem; 
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
             }
-
-            .texto-centrado h2 { 
-                font-size: 1.5rem; 
+            
+            .section-title {
+                font-size: 1.8rem;
             }
-
-            .texto-centrado p { 
-                font-size: 1rem; 
+            
+            .galeria-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Fondo superior con efecto parallax y capa oscura -->
-    <div class="fondo-superior">
-        <!-- Header con logotipo y menú superior -->
-        <div class="header">
-            <!-- Logotipo en la parte superior central -->
-            <img src="https://i.postimg.cc/qv8SKKv3/loguitofinal.png" alt="Logotipo de Detailing Expert" class="logo">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#inicio">
+                <img src="https://i.postimg.cc/qv8SKKv3/loguitofinal.png" alt="Detailing Expert Logo" class="logo">
+            </a>
             
-            <!-- Menú superior -->
-            <div class="menu-superior">
-                <a href="#empresas">Empresas</a>
-                <a href="#tipos-lavado">Tipos de lavado</a>
-                <a href="#otros-servicios">Otros servicios</a>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="menu-superior" id="mainNav">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#galeria">Galería</a>
+                <a href="#testimonios">Testimonios</a>
+                <a href="#contacto">Contacto</a>
+                <a href="#preguntas-frecuentes">Preguntas Frecuentes</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Expertos en Detallado Automotriz</h1>
+            <p>Transformamos tu vehículo con servicios profesionales de lavado, pulido y protección. Más de 10 años de experiencia cuidando lo que más te importa.</p>
+            <a href="#contacto" class="cta-button">Solicitar Presupuesto</a>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="servicios" id="servicios">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        
+        <div class="servicios-grid">
+            <div class="servicio-card">
+                <div class="servicio-img">
+                    <img src="https://i.postimg.cc/zf8rmLWN/imagen1.jpg" alt="Lavado Normal" class="main-image">
+                    <img src="https://i.postimg.cc/W1RVnY1h/imagen2.jpg" alt="Lavado Normal" class="hover-image">
+                </div>
+                <div class="servicio-content">
+                    <h3>Lavado Normal</h3>
+                    <ul>
+                        <li>Lavado del vehículo a presión</li>
+                        <li>Detallado de interiores</li>
+                        <li>Aspirado completo</li>
+                        <li>Limpieza de vidrios</li>
+                    </ul>
+                    <span class="precio">Desde S/ 50.00</span>
+                    <a href="#galeria-lavado-normal" class="cta-button">Ver Galería</a>
+                </div>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-img">
+                    <img src="https://i.postimg.cc/rpc7RJMP/sucio1.jpg" alt="Lavado Ejecutivo" class="main-image">
+                    <img src="https://i.postimg.cc/MGDN7QGK/limpio1.webp" alt="Lavado Ejecutivo" class="hover-image">
+                </div>
+                <div class="servicio-content">
+                    <h3>Lavado Ejecutivo</h3>
+                    <ul>
+                        <li>Lavado a presión detallado</li>
+                        <li>Tratamiento con cera</li>
+                        <li>Aspirado de interiores al detalle</li>
+                        <li>Abrillantado de plásticos</li>
+                    </ul>
+                    <span class="precio">Desde S/ 100.00</span>
+                    <a href="#galeria-lavado-ejecutivo" class="cta-button">Ver Galería</a>
+                </div>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-img">
+                    <img src="https://i.postimg.cc/NjLkJ2bj/sucio-2.webp" alt="Lavado de Salón" class="main-image">
+                    <img src="https://i.postimg.cc/52GqZ9kq/limpio2.jpg" alt="Lavado de Salón" class="hover-image">
+                </div>
+                <div class="servicio-content">
+                    <h3>Lavado de Salón</h3>
+                    <ul>
+                        <li>Lavado y pulverizado de motor</li>
+                        <li>Tratamiento con cera premium</li>
+                        <li>Lavado y aspirado de interiores</li>
+                        <li>Lavado de asientos y techo</li>
+                        <li>Abrillantado completo</li>
+                    </ul>
+                    <span class="precio">Desde S/ 150.00</span>
+                    <a href="#galeria-lavado-salon" class="cta-button">Ver Galería</a>
+                </div>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-img">
+                    <img src="https://i.postimg.cc/mgLXcGXK/lavado-a-domicilio1.jpg" alt="Lavado a Domicilio" class="main-image">
+                </div>
+                <div class="servicio-content">
+                    <h3>Lavado a Domicilio</h3>
+                    <ul>
+                        <li>Servicio donde estés</li>
+                        <li>Puedes escoger entre nuestros lavados</li>
+                        <li>Profesionales equipados</li>
+                        <li>Materiales ecológicos</li>
+                    </ul>
+                    <span class="precio">Desde S/ 80.00</span>
+                    <a href="#galeria-lavado-domicilio" class="cta-button">Ver Galería</a>
+                </div>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-img">
+                    <img src="https://i.postimg.cc/66rBcYTc/23eb1f88-0293-4b4a-aeea-531ec4d6c749.jpg" alt="Abrillantado">
+                </div>
+                <div class="servicio-content">
+                    <h3>Abrillantado Profesional</h3>
+                    <ul>
+                        <li>Eliminación de rayas superficiales</li>
+                        <li>Restauración del brillo original</li>
+                        <li>Protección cerámica</li>
+                        <li>Duración de hasta 6 meses</li>
+                    </ul>
+                    <span class="precio">Desde S/ 200.00</span>
+                    <a href="#galeria-abrillantado" class="cta-button">Ver Galería</a>
+                </div>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-img">
+                    <img src="https://i.postimg.cc/nrrMjWtn/motor1.jpg" alt="Lavado de Motor">
+                </div>
+                <div class="servicio-content">
+                    <h3>Lavado de Motor</h3>
+                    <ul>
+                        <li>Limpieza profunda del compartimento</li>
+                        <li>Productos especializados</li>
+                        <li>Secado meticuloso</li>
+                        <li>Protección de componentes</li>
+                    </ul>
+                    <span class="precio">Desde S/ 120.00</span>
+                    <a href="#galeria-lavado-motor" class="cta-button">Ver Galería</a>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Íconos de redes sociales -->
-    <div class="redes-sociales">
-        <a href="https://facebook.com" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
-        </a>
-        <a href="https://wa.me/973758493" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        </a>
-        <a href="https://instagram.com" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-        </a>
-    </div>
-
-    <!-- Logo de Chevrolet -->
-    <img id="logoChevrolet" src="https://i.postimg.cc/7YbqSmFT/Captura-de-pantalla-2025-03-18-165447-removebg-preview.png" alt="Logo Chevrolet" class="logo-chevrolet">
-
-    <!-- Página principal -->
-    <div id="pagina-principal" class="contenido">
-        <!-- Contenedor de imágenes en fila -->
-        <div class="contenedor-imagenes">
+    <!-- Galería por servicios -->
+    <section class="galeria-section" id="galeria">
+        <h2 class="section-title">Galería de Trabajos</h2>
+        
+        <div class="galeria-menu">
+            <button class="galeria-btn active" data-category="todos">Todos</button>
+            <button class="galeria-btn" data-category="lavado-normal">Lavado Normal</button>
+            <button class="galeria-btn" data-category="lavado-ejecutivo">Lavado Ejecutivo</button>
+            <button class="galeria-btn" data-category="lavado-salon">Lavado de Salón</button>
+            <button class="galeria-btn" data-category="lavado-domicilio">Lavado a Domicilio</button>
+            <button class="galeria-btn" data-category="abrillantado">Abrillantado</button>
+            <button class="galeria-btn" data-category="lavado-motor">Lavado de Motor</button>
+            <button class="galeria-btn" data-category="lavado-chasis">Lavado de Chasis</button>
+            <button class="galeria-btn" data-category="pintado-aros">Pintado de Aros</button>
+            <button class="galeria-btn" data-category="pintado-tolvas">Pintado de Tolvas</button>
+            <button class="galeria-btn" data-category="pintado-vehiculos">Pintado de Vehículos</button>
+            <button class="galeria-btn" data-category="tapizado">Tapizado</button>
+            <button class="galeria-btn" data-category="undercoating">Undercoating</button>
+        </div>
+        
+        <div class="galeria-grid">
             <!-- Lavado Normal -->
-            <div class="imagen-central" id="imagenNormal">
-                <div class="titulo-imagen">Lavado Normal</div>
-                <img src="https://i.postimg.cc/zf8rmLWN/imagen1.jpg" alt="Imagen 1" class="imagen-principal">
-                <img src="https://i.postimg.cc/W1RVnY1h/imagen2.jpg" alt="Imagen 1 Hover" class="imagen-hover">
-                <div class="descripcion-imagen">
-                    <p>• Lavado del vehículo a presión</p>
-                    <p>• Detallado de interiores</p>
+            <div class="galeria-item" data-category="lavado-normal">
+                <img src="https://i.postimg.cc/htWysWZZ/lavado1.jpg" alt="Lavado Normal 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
                 </div>
             </div>
-
+            
+            <div class="galeria-item" data-category="lavado-normal">
+                <img src="https://i.postimg.cc/J0Hx3PNW/lavado10.jpg" alt="Lavado Normal 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-normal">
+                <img src="https://i.postimg.cc/nM8k3B29/lavado11.jpg" alt="Lavado Normal 3">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-normal">
+                <img src="https://i.postimg.cc/QNBZnDSj/lavado13.jpg" alt="Lavado Normal 4">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-normal">
+                <img src="https://i.postimg.cc/hGKCF8B9/lavado6.jpg" alt="Lavado Normal 5">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-normal">
+                <img src="https://i.postimg.cc/jjvMRWxB/lavado7.jpg" alt="Lavado Normal 6">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-normal">
+                <img src="https://i.postimg.cc/bJJ3rzdr/lavado8.jpg" alt="Lavado Normal 7">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
             <!-- Lavado Ejecutivo -->
-            <div class="imagen-central" id="imagenEjecutivo">
-                <div class="titulo-imagen">Lavado Ejecutivo</div>
-                <img src="https://i.postimg.cc/rpc7RJMP/sucio1.jpg" alt="Auto sucio" class="imagen-principal">
-                <img src="https://i.postimg.cc/MGDN7QGK/limpio1.webp" alt="Auto sucio Hover" class="imagen-hover">
-                <div class="descripcion-imagen">
-                    <p>• Lavado a presión detallado del vehículo</p>
-                    <p>• Tratamiento con cera del vehículo</p>
-                    <p>• Aspirado de interiores al detalle</p>
-                    <p>• Abrillantado de plásticos</p>
+            <div class="galeria-item" data-category="lavado-ejecutivo">
+                <img src="https://i.postimg.cc/NfrCRfDr/lavado2.jpg" alt="Lavado Ejecutivo 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
                 </div>
             </div>
-
+            
+            <div class="galeria-item" data-category="lavado-ejecutivo">
+                <img src="https://i.postimg.cc/gjxSSYPQ/lavado3.jpg" alt="Lavado Ejecutivo 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-ejecutivo">
+                <img src="https://i.postimg.cc/MHgsgh6T/lavado4.jpg" alt="Lavado Ejecutivo 3">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
             <!-- Lavado de Salón -->
-            <div class="imagen-central" id="imagenSalon">
-                <div class="titulo-imagen">Lavado de Salón</div>
-                <img src="https://i.postimg.cc/NjLkJ2bj/sucio-2.webp" alt="Auto sucio 2" class="imagen-principal">
-                <img src="https://i.postimg.cc/52GqZ9kq/limpio2.jpg" alt="Auto sucio 2 Hover" class="imagen-hover">
-                <div class="descripcion-imagen">
-                    <p>• Lavado y pulverizado de motor</p>
-                    <p>• Tratamiento con cera del vehículo</p>
-                    <p>• Lavado a presión detallado del vehículo</p>
-                    <p>• Lavado y aspirado de interiores a detalle</p>
-                    <p>• Lavado de asientos y techo del vehículo</p>
-                    <p>• Abrillantado del vehículo en general</p>
+            <div class="galeria-item" data-category="lavado-salon">
+                <img src="https://i.postimg.cc/D0SyybqZ/motor8.jpg" alt="Lavado de Salón 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
                 </div>
             </div>
-
+            
+            <div class="galeria-item" data-category="lavado-salon">
+                <img src="https://i.postimg.cc/PqFqG4wc/motor31.jpg" alt="Lavado de Salón 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-salon">
+                <img src="https://i.postimg.cc/Kj3xyh23/motor12.jpg" alt="Lavado de Salón 3">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-salon">
+                <img src="https://i.postimg.cc/gJS2WKLQ/motor7.jpg" alt="Lavado de Salón 4">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-salon">
+                <img src="https://i.postimg.cc/W3b1Cyz0/motor5.jpg" alt="Lavado de Salón 5">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
             <!-- Lavado a Domicilio -->
-            <div class="imagen-central" id="imagenDomicilio">
-                <div class="titulo-imagen">Lavado a Domicilio</div>
-                <img src="https://i.postimg.cc/mgLXcGXK/lavado-a-domicilio1.jpg" alt="Lavado a domicilio" class="imagen-principal">
-                <img src="https://i.postimg.cc/mgLXcGXK/lavado-a-domicilio1.jpg" alt="Lavado a domicilio Hover" class="imagen-hover">
-                <div class="descripcion-imagen">
-                    <p>• Puede escoger entre los lavados existentes</p>
+            <div class="galeria-item" data-category="lavado-domicilio">
+                <img src="https://i.postimg.cc/mgLXcGXK/lavado-a-domicilio1.jpg" alt="Lavado a Domicilio">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <!-- Abrillantado -->
+            <div class="galeria-item" data-category="abrillantado">
+                <img src="https://i.postimg.cc/66rBcYTc/23eb1f88-0293-4b4a-aeea-531ec4d6c749.jpg" alt="Abrillantado 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="abrillantado">
+                <img src="https://i.postimg.cc/6qfwQ5Fg/abrillantado2.jpg" alt="Abrillantado 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="abrillantado">
+                <img src="https://i.postimg.cc/Bb04s172/abrillantado3.jpg" alt="Abrillantado 3">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="abrillantado">
+                <img src="https://i.postimg.cc/qRn49Gwk/abrillantado.jpg" alt="Abrillantado 4">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <!-- Lavado de Motor -->
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/nrrMjWtn/motor1.jpg" alt="Lavado de Motor 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/RV3Nv2RR/motor2.jpg" alt="Lavado de Motor 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/Kj3xyh23/motor12.jpg" alt="Lavado de Motor 3">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/Gmwhdt9L/motor11.jpg" alt="Lavado de Motor 4">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/3xXrRhDg/motor10.jpg" alt="Lavado de Motor 5">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/K8DKWBQS/motor21.jpg" alt="Lavado de Motor 6">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/W49dNVQ5/motor22.jpg" alt="Lavado de Motor 7">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/7LPCrhQC/motor23.jpg" alt="Lavado de Motor 8">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/kMR2mkwy/motor24.jpg" alt="Lavado de Motor 9">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/WbRhbXHc/motor25.jpg" alt="Lavado de Motor 10">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/c4Q6Kwpg/motor26.jpg" alt="Lavado de Motor 11">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/kMY237xG/motor3.jpg" alt="Lavado de Motor 12">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/PqFqG4wc/motor31.jpg" alt="Lavado de Motor 13">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/KjhxFsv9/motor32.jpg" alt="Lavado de Motor 14">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/0QwPTqxM/motor33.jpg" alt="Lavado de Motor 15">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/VstkTXLG/motor34.jpg" alt="Lavado de Motor 16">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/BQGnGtjq/motor35.jpg" alt="Lavado de Motor 17">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/prSrDB2z/motor4.jpg" alt="Lavado de Motor 18">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/gJS2WKLQ/motor7.jpg" alt="Lavado de Motor 19">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-motor">
+                <img src="https://i.postimg.cc/D0SyybqZ/motor8.jpg" alt="Lavado de Motor 20">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <!-- Lavado de Chasis -->
+            <div class="galeria-item" data-category="lavado-chasis">
+                <img src="https://i.postimg.cc/8PG0GVN8/chasis6.jpg" alt="Lavado de Chasis 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-chasis">
+                <img src="https://i.postimg.cc/x8vpm6GF/chasis7.jpg" alt="Lavado de Chasis 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-chasis">
+                <img src="https://i.postimg.cc/4N1FNFxY/chasis8.jpg" alt="Lavado de Chasis 3">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-chasis">
+                <img src="https://i.postimg.cc/9XZnsf3t/chasis5.jpg" alt="Lavado de Chasis 4">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-chasis">
+                <img src="https://i.postimg.cc/DZbMvvSh/chasis4.jpg" alt="Lavado de Chasis 5">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-chasis">
+                <img src="https://i.postimg.cc/s2LLCQDK/chasis3.jpg" alt="Lavado de Chasis 6">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="lavado-chasis">
+                <img src="https://i.postimg.cc/1XhY4kFq/chasis2.jpg" alt="Lavado de Chasis 7">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <!-- Pintado de Aros -->
+            <div class="galeria-item" data-category="pintado-aros">
+                <img src="https://i.postimg.cc/pThckWv7/aro1.jpg" alt="Pintado de Aros 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-aros">
+                <img src="https://i.postimg.cc/HxqZhqsL/aro2.jpg" alt="Pintado de Aros 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-aros">
+                <img src="https://i.postimg.cc/yx0Q4Lky/aro3.jpg" alt="Pintado de Aros 3">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-aros">
+                <img src="https://i.postimg.cc/dQCSyV4Z/aro4.jpg" alt="Pintado de Aros 4">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-aros">
+                <img src="https://i.postimg.cc/jdQgMkVs/aro5.jpg" alt="Pintado de Aros 5">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-aros">
+                <img src="https://i.postimg.cc/9FjgtHn8/aro6.jpg" alt="Pintado de Aros 6">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-aros">
+                <img src="https://i.postimg.cc/2SkHMFmn/aro7.jpg" alt="Pintado de Aros 7">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <!-- Pintado de Tolvas -->
+            <div class="galeria-item" data-category="pintado-tolvas">
+                <img src="https://i.postimg.cc/8kLtCnzh/tolva1.jpg" alt="Pintado de Tolvas 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-tolvas">
+                <img src="https://i.postimg.cc/vBVXf0Lw/tolva2.jpg" alt="Pintado de Tolvas 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-tolvas">
+                <img src="https://i.postimg.cc/prMCZKqh/tolva4.jpg" alt="Pintado de Tolvas 3">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-tolvas">
+                <img src="https://i.postimg.cc/bvGRfm5S/tolva9.jpg" alt="Pintado de Tolvas 4">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-tolvas">
+                <img src="https://i.postimg.cc/MKxtfbng/tolva8.jpg" alt="Pintado de Tolvas 5">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-tolvas">
+                <img src="https://i.postimg.cc/xdW3fKrx/tolva10.jpg" alt="Pintado de Tolvas 6">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <!-- Pintado de Vehículos -->
+            <div class="galeria-item" data-category="pintado-vehiculos">
+                <img src="https://i.postimg.cc/g0RN6MKF/vehiculo1.jpg" alt="Pintado de Vehículos 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="pintado-vehiculos">
+                <img src="https://i.postimg.cc/50Sgs6Gs/vehiculo2.jpg" alt="Pintado de Vehículos 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <!-- Tapizado -->
+            <div class="galeria-item" data-category="tapizado">
+                <img src="https://i.postimg.cc/63xwdmJd/tapiz1.jpg" alt="Tapizado 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="tapizado">
+                <img src="https://i.postimg.cc/GmNbppXg/tapiz2.jpg" alt="Tapizado 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <!-- Undercoating -->
+            <div class="galeria-item" data-category="undercoating">
+                <img src="https://i.postimg.cc/br6KF6MV/under11.jpg" alt="Undercoating 1">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="undercoating">
+                <img src="https://i.postimg.cc/ryQXmmmG/under12.jpg" alt="Undercoating 2">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="undercoating">
+                <img src="https://i.postimg.cc/2yjsGpHB/under9.jpg" alt="Undercoating 3">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="undercoating">
+                <img src="https://i.postimg.cc/26YRqLhG/under5.jpg" alt="Undercoating 4">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="undercoating">
+                <img src="https://i.postimg.cc/x1WS24dW/under6.jpg" alt="Undercoating 5">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="undercoating">
+                <img src="https://i.postimg.cc/L6QpyXF4/under3.jpg" alt="Undercoating 6">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            
+            <div class="galeria-item" data-category="undercoating">
+                <img src="https://i.postimg.cc/pXrNnHhw/under10.jpg" alt="Undercoating 7">
+                <div class="galeria-overlay">
+                    <i class="fas fa-search-plus"></i>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
+    <!-- Testimonios -->
+    <section class="testimonios" id="testimonios">
+        <h2 class="section-title">Déjanos tu Opinión</h2>
+        
+        <div class="testimonios-container">
+            <div class="testimonial-form">
+                <form id="testimonialForm">
+                    <div class="form-group">
+                        <label for="testimonial-name">Nombre</label>
+                        <input type="text" id="testimonial-name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonial-email">Email (opcional)</label>
+                        <input type="email" id="testimonial-email" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonial-service">Servicio recibido</label>
+                        <select id="testimonial-service" class="form-control">
+                            <option value="">Seleccione un servicio</option>
+                            <option value="lavado-normal">Lavado Normal</option>
+                            <option value="lavado-ejecutivo">Lavado Ejecutivo</option>
+                            <option value="lavado-salon">Lavado de Salón</option>
+                            <option value="lavado-domicilio">Lavado a Domicilio</option>
+                            <option value="abrillantado">Abrillantado</option>
+                            <option value="lavado-motor">Lavado de Motor</option>
+                            <option value="lavado-chasis">Lavado de Chasis</option>
+                            <option value="pintado-aros">Pintado de Aros</option>
+                            <option value="pintado-tolvas">Pintado de Tolvas</option>
+                            <option value="pintado-vehiculos">Pintado de Vehículos</option>
+                            <option value="tapizado">Tapizado</option>
+                            <option value="undercoating">Undercoating</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonial-message">Tu experiencia</label>
+                        <textarea id="testimonial-message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Enviar Testimonio</button>
+                </form>
             </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contacto" id="contacto">
+        <h2 class="section-title">Contáctanos</h2>
+        
+        <div class="contacto-container">
+            <div class="contacto-info">
+                <div class="contacto-item">
+                    <div class="contacto-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contacto-text">
+                        <h3>Dirección</h3>
+                        <p>Av. Ejercito 624, Andres Avelino Caceres-Huamanga-Ayacucho</p>
+                        <a href="https://maps.google.com/?q=Av.+Ejercito+624,+Andres+Avelino+Caceres-Huamanga-Ayacucho" target="_blank" class="map-link">
+                            Ver en Google Maps
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contacto-item">
+                    <div class="contacto-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contacto-text">
+                        <h3>Teléfono</h3>
+                        <p>947 658 763</p>
+                    </div>
+                </div>
+                
+                <div class="contacto-item">
+                    <div class="contacto-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contacto-text">
+                        <h3>Email</h3>
+                        <p>detailingexpertcw@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="contacto-item">
+                    <div class="contacto-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contacto-text">
+                        <h3>Horario</h3>
+                        <p>Lunes a Sábado: 9:00 am - 7:00 pm</p>
+                        <p>Domingo: 10:00 am - 3:00 pm</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contacto-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Servicio de interés</label>
+                        <select id="service" class="form-control" required>
+                            <option value="">Seleccione un servicio</option>
+                            <option value="lavado-normal">Lavado Normal</option>
+                            <option value="lavado-ejecutivo">Lavado Ejecutivo</option>
+                            <option value="lavado-salon">Lavado de Salón</option>
+                            <option value="lavado-domicilio">Lavado a Domicilio</option>
+                            <option value="abrillantado">Abrillantado Profesional</option>
+                            <option value="lavado-motor">Lavado de Motor</option>
+                            <option value="lavado-chasis">Lavado de Chasis</option>
+                            <option value="pintado-aros">Pintado de Aros</option>
+                            <option value="pintado-tolvas">Pintado de Tolvas</option>
+                            <option value="pintado-vehiculos">Pintado de Vehículos</option>
+                            <option value="tapizado">Tapizado</option>
+                            <option value="undercoating">Undercoating</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" class="form-control"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preguntas Frecuentes -->
+    <section class="preguntas-frecuentes" id="preguntas-frecuentes">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        
+        <div class="faq-container">
+            <div class="faq-category">
+                <h3>Servicios</h3>
+                <div class="faq-item">
+                    <h4>¿Qué incluye el servicio de detallado completo?</h4>
+                    <p>Nuestro servicio de detallado completo incluye lavado exterior e interior, descontaminación de pintura, encerado, limpieza profunda de tapicería y alfombras, tratamiento de plásticos y acondicionamiento de cuero (si aplica).</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Ofrecen lavado de motor? ¿Es seguro?</h4>
+                    <p>Sí, ofrecemos lavado de motor con métodos seguros, utilizando productos y técnicas diseñadas para proteger los componentes eléctricos y mecánicos del vehículo.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Pueden eliminar manchas de los asientos o alfombras?</h4>
+                    <p>Sí, contamos con productos especializados y equipos de extracción para remover la mayoría de las manchas. Sin embargo, la efectividad puede depender del tipo y tiempo de la mancha.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Hacen pulido y encerado de la pintura?</h4>
+                    <p>Sí, realizamos pulido profesional para eliminar micro-rayones y devolver el brillo a la pintura. También aplicamos cera de alta calidad para proteger la superficie.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Eliminan rayones del auto?</h4>
+                    <p>Depende de la profundidad del rayón. Los rayones superficiales pueden eliminarse con pulido, pero los más profundos podrían requerir otros tratamientos o repintado.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Tienen servicios de protección cerámica o PPF (Paint Protection Film)?</h4>
+                    <p>Sí, ofrecemos recubrimiento cerámico para mayor protección y brillo, así como PPF para resguardar la pintura contra rayones e impactos.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Ofrecen limpieza de faros opacos?</h4>
+                    <p>Sí, restauramos faros opacos o amarillentos con un proceso de lijado, pulido y sellado que mejora su claridad y vida útil.</p>
+                </div>
+            </div>
+            
+            <div class="faq-category">
+                <h3>Sobre los precios y tiempos</h3>
+                <div class="faq-item">
+                    <h4>¿Cuánto cuesta un detallado completo?</h4>
+                    <p>El precio varía según el tamaño del vehículo y el nivel de servicio requerido. Contáctanos para una cotización personalizada.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Cuánto tiempo tarda el servicio?</h4>
+                    <p>Un detallado completo suele tardar entre 4 y 8 horas, dependiendo de las condiciones del vehículo y los servicios seleccionados.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Ofrecen paquetes o descuentos por varios autos?</h4>
+                    <p>Sí, tenemos paquetes especiales y descuentos para flotas o clientes frecuentes.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿El precio varía según el tamaño del vehículo?</h4>
+                    <p>Sí, los precios pueden cambiar según si el auto es compacto, sedán, SUV o camioneta, debido al tiempo y productos requeridos.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Tienen membresías o servicios recurrentes?</h4>
+                    <p>Sí, ofrecemos membresías con beneficios exclusivos y mantenimiento regular para mantener tu auto siempre impecable.</p>
+                </div>
+            </div>
+            
+            <div class="faq-category">
+                <h3>Sobre la calidad y productos</h3>
+                <div class="faq-item">
+                    <h4>¿Qué productos utilizan? ¿Son seguros para mi auto?</h4>
+                    <p>Utilizamos productos de alta calidad, seguros para la pintura, tapicería y plásticos del vehículo.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Usan productos ecológicos o biodegradables?</h4>
+                    <p>Sí, contamos con opciones ecológicas que reducen el impacto ambiental sin comprometer la efectividad del servicio.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Cómo garantizan que no dañarán la pintura o el interior?</h4>
+                    <p>Nuestros técnicos están capacitados en técnicas de detallado seguras y utilizamos productos diseñados específicamente para cada tipo de superficie.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Cuánto dura la protección de la cera o el sellador que aplican?</h4>
+                    <p>Depende del producto utilizado y los cuidados posteriores, pero en promedio la cera dura entre 1 y 3 meses, mientras que un sellador o recubrimiento cerámico puede durar de 6 meses a varios años.</p>
+                </div>
+            </div>
+            
+            <div class="faq-category">
+                <h3>Sobre la logística y conveniencia</h3>
+                <div class="faq-item">
+                    <h4>¿Necesito agendar una cita o aceptan clientes sin cita?</h4>
+                    <p>Se recomienda agendar una cita para asegurar disponibilidad, pero también atendemos clientes sin cita según la disponibilidad del día.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Tienen servicio a domicilio?</h4>
+                    <p>Sí, ofrecemos detallado a domicilio con herramientas y productos diseñados para un servicio eficiente sin necesidad de agua a presión.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Dónde se encuentran ubicados?</h4>
+                    <p>Nuestra ubicación exacta es <strong>Av. Ejercito 624, Andres Avelino Caceres-Huamanga-Ayacucho</strong>, pero también contamos con servicio a domicilio en ciertas zonas.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>¿Puedo dejar mi auto y recogerlo después?</h4>
+                    <p>Sí, puedes dejar tu vehículo y nosotros te avisamos cuando esté listo. También ofrecemos servicio de recogida y entrega en algunos casos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" alt="Detailing Expert Logo" class="footer-logo">
+        
+        <div class="footer-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#galeria">Galería</a>
+            <a href="#testimonios">Testimonios</a>
+            <a href="#contacto">Contacto</a>
+            <a href="#preguntas-frecuentes">Preguntas Frecuentes</a>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/18TSRHC5WP/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/973758493" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Detailing Expert. Todos los derechos reservados. RUC: 10471723318</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp flotante -->
+    <a href="https://wa.me/973758493" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal para galería -->
+    <div class="modal" id="galleryModal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img class="modal-img" id="modalImage" src="" alt="">
         </div>
     </div>
 
-    <!-- Subpáginas -->
-    <div id="empresas" class="contenido" style="display: none;">
-        <h2>Empresas</h2>
-        <div class="opciones-menu">
-            <a href="#">Muebles</a>
-            <a href="#">Vehículos</a>
-        </div>
-        <a href="#pagina-principal" class="boton-volver">Volver a la página principal</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <div id="tipos-lavado" class="contenido" style="display: none;">
-        <h2>Tipos de lavado</h2>
-        <div class="opciones-menu">
-            <a href="#lavado-normal">Lavado Normal</a>
-            <a href="#lavado-ejecutivo">Lavado Ejecutivo</a>
-            <a href="#lavado-salon">Lavado de Salón</a>
-            <a href="#lavado-domicilio">Lavado a Domicilio</a>
-        </div>
-        <a href="#pagina-principal" class="boton-volver">Volver a la página principal</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <div id="otros-servicios" class="contenido" style="display: none;">
-        <h2>Otros servicios</h2>
-        <div class="opciones-menu">
-            <a href="#abrillantado">Abrillantado</a>
-            <a href="#lavado-chasis">Lavado de chasis</a>
-            <a href="#lavado-motor">Lavado de motor</a>
-            <a href="#pintado-aros">Pintado de aros</a>
-            <a href="#pintado-tolvas">Pintado de tolvas</a>
-            <a href="#pintado-vehiculos">Pintado de vehículos</a>
-            <a href="#tapizado">Tapizado</a>
-            <a href="#undercoating">Undercoating</a>
-        </div>
-        <a href="#pagina-principal" class="boton-volver">Volver a la página principal</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Lavado Normal -->
-    <div id="lavado-normal" class="contenido" style="display: none;">
-        <h2>Lavado Normal</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/htWysWZZ/lavado1.jpg" alt="Lavado 1">
-            <img src="https://i.postimg.cc/J0Hx3PNW/lavado10.jpg" alt="Lavado 10">
-            <img src="https://i.postimg.cc/nM8k3B29/lavado11.jpg" alt="Lavado 11">
-            <img src="https://i.postimg.cc/QNBZnDSj/lavado13.jpg" alt="Lavado 13">
-            <img src="https://i.postimg.cc/hGKCF8B9/lavado6.jpg" alt="Lavado 6">
-            <img src="https://i.postimg.cc/jjvMRWxB/lavado7.jpg" alt="Lavado 7">
-            <img src="https://i.postimg.cc/bJJ3rzdr/lavado8.jpg" alt="Lavado 8">
-        </div>
-        <a href="#tipos-lavado" class="boton-volver">Volver a Tipos de Lavado</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Lavado Ejecutivo -->
-    <div id="lavado-ejecutivo" class="contenido" style="display: none;">
-        <h2>Lavado Ejecutivo</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/NfrCRfDr/lavado2.jpg" alt="Lavado 2">
-            <img src="https://i.postimg.cc/gjxSSYPQ/lavado3.jpg" alt="Lavado 3">
-            <img src="https://i.postimg.cc/MHgsgh6T/lavado4.jpg" alt="Lavado 4">
-        </div>
-        <a href="#tipos-lavado" class="boton-volver">Volver a Tipos de Lavado</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Lavado de Salón -->
-    <div id="lavado-salon" class="contenido" style="display: none;">
-        <h2>Lavado de Salón</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/D0SyybqZ/motor8.jpg" alt="Motor 8">
-            <img src="https://i.postimg.cc/PqFqG4wc/motor31.jpg" alt="Motor 31">
-            <img src="https://i.postimg.cc/Kj3xyh23/motor12.jpg" alt="Motor 12">
-            <img src="https://i.postimg.cc/gJS2WKLQ/motor7.jpg" alt="Motor 7">
-            <img src="https://i.postimg.cc/W3b1Cyz0/motor5.jpg" alt="Motor 5">
-        </div>
-        <a href="#tipos-lavado" class="boton-volver">Volver a Tipos de Lavado</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Lavado a Domicilio -->
-    <div id="lavado-domicilio" class="contenido" style="display: none;">
-        <h2>Lavado a Domicilio</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/mgLXcGXK/lavado-a-domicilio1.jpg" alt="Lavado a domicilio">
-        </div>
-        <a href="#tipos-lavado" class="boton-volver">Volver a Tipos de Lavado</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Abrillantado -->
-    <div id="abrillantado" class="contenido" style="display: none;">
-        <h2>Abrillantado</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/66rBcYTc/23eb1f88-0293-4b4a-aeea-531ec4d6c749.jpg" alt="Abrillantado 1">
-            <img src="https://i.postimg.cc/6qfwQ5Fg/abrillantado2.jpg" alt="Abrillantado 2">
-            <img src="https://i.postimg.cc/Bb04s172/abrillantado3.jpg" alt="Abrillantado 3">
-            <img src="https://i.postimg.cc/qRn49Gwk/abrillantado.jpg" alt="Abrillantado 4">
-        </div>
-        <a href="#otros-servicios" class="boton-volver">Volver a Otros Servicios</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Lavado de Chasis -->
-    <div id="lavado-chasis" class="contenido" style="display: none;">
-        <h2>Lavado de Chasis</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/8PG0GVN8/chasis6.jpg" alt="Chasis 6">
-            <img src="https://i.postimg.cc/x8vpm6GF/chasis7.jpg" alt="Chasis 7">
-            <img src="https://i.postimg.cc/4N1FNFxY/chasis8.jpg" alt="Chasis 8">
-            <img src="https://i.postimg.cc/9XZnsf3t/chasis5.jpg" alt="Chasis 5">
-            <img src="https://i.postimg.cc/DZbMvvSh/chasis4.jpg" alt="Chasis 4">
-            <img src="https://i.postimg.cc/s2LLCQDK/chasis3.jpg" alt="Chasis 3">
-            <img src="https://i.postimg.cc/1XhY4kFq/chasis2.jpg" alt="Chasis 2">
-        </div>
-        <a href="#otros-servicios" class="boton-volver">Volver a Otros Servicios</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Lavado de Motor -->
-    <div id="lavado-motor" class="contenido" style="display: none;">
-        <h2>Lavado de Motor</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/nrrMjWtn/motor1.jpg" alt="Motor 1">
-            <img src="https://i.postimg.cc/RV3Nv2RR/motor2.jpg" alt="Motor 2">
-            <img src="https://i.postimg.cc/Kj3xyh23/motor12.jpg" alt="Motor 12">
-            <img src="https://i.postimg.cc/Gmwhdt9L/motor11.jpg" alt="Motor 11">
-            <img src="https://i.postimg.cc/3xXrRhDg/motor10.jpg" alt="Motor 10">
-            <img src="https://i.postimg.cc/K8DKWBQS/motor21.jpg" alt="Motor 21">
-            <img src="https://i.postimg.cc/W49dNVQ5/motor22.jpg" alt="Motor 22">
-            <img src="https://i.postimg.cc/7LPCrhQC/motor23.jpg" alt="Motor 23">
-            <img src="https://i.postimg.cc/kMR2mkwy/motor24.jpg" alt="Motor 24">
-            <img src="https://i.postimg.cc/WbRhbXHc/motor25.jpg" alt="Motor 25">
-            <img src="https://i.postimg.cc/c4Q6Kwpg/motor26.jpg" alt="Motor 26">
-            <img src="https://i.postimg.cc/kMY237xG/motor3.jpg" alt="Motor 3">
-            <img src="https://i.postimg.cc/PqFqG4wc/motor31.jpg" alt="Motor 31">
-            <img src="https://i.postimg.cc/KjhxFsv9/motor32.jpg" alt="Motor 32">
-            <img src="https://i.postimg.cc/0QwPTqxM/motor33.jpg" alt="Motor 33">
-            <img src="https://i.postimg.cc/VstkTXLG/motor34.jpg" alt="Motor 34">
-            <img src="https://i.postimg.cc/BQGnGtjq/motor35.jpg" alt="Motor 35">
-            <img src="https://i.postimg.cc/prSrDB2z/motor4.jpg" alt="Motor 4">
-            <img src="https://i.postimg.cc/gJS2WKLQ/motor7.jpg" alt="Motor 7">
-            <img src="https://i.postimg.cc/D0SyybqZ/motor8.jpg" alt="Motor 8">
-        </div>
-        <a href="#otros-servicios" class="boton-volver">Volver a Otros Servicios</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Pintado de Aros -->
-    <div id="pintado-aros" class="contenido" style="display: none;">
-        <h2>Pintado de Aros</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/pThckWv7/aro1.jpg" alt="Aro 1">
-            <img src="https://i.postimg.cc/HxqZhqsL/aro2.jpg" alt="Aro 2">
-            <img src="https://i.postimg.cc/yx0Q4Lky/aro3.jpg" alt="Aro 3">
-            <img src="https://i.postimg.cc/dQCSyV4Z/aro4.jpg" alt="Aro 4">
-            <img src="https://i.postimg.cc/jdQgMkVs/aro5.jpg" alt="Aro 5">
-            <img src="https://i.postimg.cc/9FjgtHn8/aro6.jpg" alt="Aro 6">
-            <img src="https://i.postimg.cc/2SkHMFmn/aro7.jpg" alt="Aro 7">
-        </div>
-        <a href="#otros-servicios" class="boton-volver">Volver a Otros Servicios</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Pintado de Tolvas -->
-    <div id="pintado-tolvas" class="contenido" style="display: none;">
-        <h2>Pintado de Tolvas</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/8kLtCnzh/tolva1.jpg" alt="Tolva 1">
-            <img src="https://i.postimg.cc/vBVXf0Lw/tolva2.jpg" alt="Tolva 2">
-            <img src="https://i.postimg.cc/prMCZKqh/tolva4.jpg" alt="Tolva 4">
-            <img src="https://i.postimg.cc/bvGRfm5S/tolva9.jpg" alt="Tolva 9">
-            <img src="https://i.postimg.cc/MKxtfbng/tolva8.jpg" alt="Tolva 8">
-            <img src="https://i.postimg.cc/xdW3fKrx/tolva10.jpg" alt="Tolva 10">
-        </div>
-        <a href="#otros-servicios" class="boton-volver">Volver a Otros Servicios</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Pintado de Vehículos -->
-    <div id="pintado-vehiculos" class="contenido" style="display: none;">
-        <h2>Pintado de Vehículos</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/g0RN6MKF/vehiculo1.jpg" alt="Vehículo 1">
-            <img src="https://i.postimg.cc/50Sgs6Gs/vehiculo2.jpg" alt="Vehículo 2">
-        </div>
-        <a href="#otros-servicios" class="boton-volver">Volver a Otros Servicios</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Tapizado -->
-    <div id="tapizado" class="contenido" style="display: none;">
-        <h2>Tapizado</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/63xwdmJd/tapiz1.jpg" alt="Tapizado 1">
-            <img src="https://i.postimg.cc/GmNbppXg/tapiz2.jpg" alt="Tapizado 2">
-        </div>
-        <a href="#otros-servicios" class="boton-volver">Volver a Otros Servicios</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Undercoating -->
-    <div id="undercoating" class="contenido" style="display: none;">
-        <h2>Undercoating</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/br6KF6MV/under11.jpg" alt="Undercoating 11">
-            <img src="https://i.postimg.cc/ryQXmmmG/under12.jpg" alt="Undercoating 12">
-            <img src="https://i.postimg.cc/2yjsGpHB/under9.jpg" alt="Undercoating 9">
-            <img src="https://i.postimg.cc/26YRqLhG/under5.jpg" alt="Undercoating 5">
-            <img src="https://i.postimg.cc/x1WS24dW/under6.jpg" alt="Undercoating 6">
-            <img src="https://i.postimg.cc/L6QpyXF4/under3.jpg" alt="Undercoating 3">
-            <img src="https://i.postimg.cc/pXrNnHhw/under10.jpg" alt="Undercoating 10">
-        </div>
-        <a href="#otros-servicios" class="boton-volver">Volver a Otros Servicios</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Chevrolet -->
-    <div id="chevrolet" class="contenido" style="display: none;">
-        <h2>Chevrolet</h2>
-        <div class="galeria">
-            <img src="https://i.postimg.cc/L5LwT9SD/4dac2bc8-6a4e-4702-965c-b155e8ffadd8.jpg" alt="Chevrolet 1">
-            <img src="https://i.postimg.cc/85qxMF2s/65f3d4e9-ce7b-4320-bcf9-b853d832af1e.jpg" alt="Chevrolet 2">
-            <img src="https://i.postimg.cc/Pfwgh4DD/8ca9dc93-4192-4941-abc6-cb04ef32cb46.jpg" alt="Chevrolet 3">
-        </div>
-        <a href="#pagina-principal" class="boton-volver">Volver a la página principal</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-                        <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Acerca de Nosotros -->
-    <div id="acerca-de-nosotros" class="contenido" style="display: none;">
-        <div class="texto-centrado">
-            <h2>Acerca de Nosotros</h2>
-            <p>Detailing Expert fue fundada en 2010 con la misión de ofrecer servicios de lavado y detallado de vehículos de alta calidad. Nuestro equipo de expertos está comprometido con la excelencia y la satisfacción del cliente. Utilizamos productos de primera línea y técnicas avanzadas para garantizar que cada vehículo luzca como nuevo.</p>
-        </div>
-        <a href="#pagina-principal" class="boton-volver">Volver a la página principal</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Subpágina para Preguntas Frecuentes -->
-    <div id="preguntas-frecuentes" class="contenido" style="display: none;">
-        <div class="texto-centrado">
-            <h2>Preguntas Frecuentes</h2>
-            <p><strong>¿Qué servicios ofrecen?</strong><br>Ofrecemos una amplia gama de servicios, desde lavados básicos hasta tratamientos especializados como abrillantado, tapizado y pintado de vehículos.</p>
-            <p><strong>¿Trabajan con empresas?</strong><br>Sí, ofrecemos servicios personalizados para empresas, incluyendo flotas de vehículos y muebles.</p>
-            <p><strong>¿Ofrecen garantía?</strong><br>Sí, todos nuestros servicios están respaldados por una garantía de satisfacción.</p>
-        </div>
-        <a href="#pagina-principal" class="boton-volver">Volver a la página principal</a>
-
-        <!-- Logo central y información -->
-        <div class="logo-info">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/L5PB7DxB/Dise-o-sin-t-tulo-removebg-preview.png" 
-                     alt="Logo Central" class="logo-central">
-            </div>
-            <p>RUC: 10471723318</p>
-            <p>Perú-Lima-Ayacucho</p>
-            <p><a href="#acerca-de-nosotros" style="color: #fff; text-decoration: none;">Acerca de nosotros</a></p>
-            <p><a href="#preguntas-frecuentes" style="color: #fff; text-decoration: none;">Preguntas frecuentes</a></p>
-            <p>Contacto: detailingexpertcw@gmail.com</p>
-            <p><img src="https://i.postimg.cc/0Q0qZQ0Z/phone-icon.png" alt="Teléfono" class="telefono-logo">947658763</p>
-        </div>
-    </div>
-
-    <!-- Script para manejar la navegación -->
+    <!-- Scripts -->
     <script>
-        // Función para mostrar la subpágina correspondiente
-        function mostrarSubpagina(subpaginaId) {
-            // Oculta todas las subpáginas
-            const subpaginas = document.querySelectorAll(".contenido");
-            subpaginas.forEach(subpagina => subpagina.style.display = "none");
-
-            // Muestra la subpágina seleccionada
-            const subpaginaActiva = document.getElementById(subpaginaId);
-            if (subpaginaActiva) {
-                subpaginaActiva.style.display = "block";
-            }
-        }
-
-        // Maneja el cambio de hash en la URL
-        window.addEventListener("hashchange", () => {
-            const hash = window.location.hash;
-            if (hash === "#pagina-principal") {
-                mostrarSubpagina("pagina-principal");
-            } else if (hash === "#empresas" || hash === "#tipos-lavado" || hash === "#otros-servicios" ||
-                        hash === "#lavado-normal" || hash === "#lavado-ejecutivo" || hash === "#lavado-salon" ||
-                        hash === "#lavado-domicilio" || hash === "#abrillantado" || hash === "#lavado-chasis" || 
-                        hash === "#lavado-motor" || hash === "#pintado-aros" || hash === "#pintado-tolvas" || 
-                        hash === "#pintado-vehiculos" || hash === "#tapizado" || hash === "#undercoating" || 
-                        hash === "#chevrolet" || hash === "#acerca-de-nosotros" || hash === "#preguntas-frecuentes") {
-                mostrarSubpagina(hash.substring(1));
+        // Navegación responsive
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            navToggle.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.menu-superior a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Efecto de scroll en el header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // Galería modal
+        const galleryItems = document.querySelectorAll('.galeria-item');
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModal = document.querySelector('.close-modal');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                modalImg.src = imgSrc;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
         });
-
-        // Inicializa la página según el hash actual
-        window.addEventListener("load", () => {
-            const hash = window.location.hash;
-            if (hash === "#empresas" || hash === "#tipos-lavado" || hash === "#otros-servicios" ||
-                hash === "#lavado-normal" || hash === "#lavado-ejecutivo" || hash === "#lavado-salon" ||
-                hash === "#lavado-domicilio" || hash === "#abrillantado" || hash === "#lavado-chasis" || 
-                hash === "#lavado-motor" || hash === "#pintado-aros" || hash === "#pintado-tolvas" || 
-                hash === "#pintado-vehiculos" || hash === "#tapizado" || hash === "#undercoating" || 
-                hash === "#chevrolet" || hash === "#acerca-de-nosotros" || hash === "#preguntas-frecuentes") {
-                mostrarSubpagina(hash.substring(1));
-            } else {
-                mostrarSubpagina("pagina-principal");
-            }
+        
+        // Filtrado de galería por categorías
+        const galleryButtons = document.querySelectorAll('.galeria-btn');
+        
+        galleryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remover clase active de todos los botones
+                galleryButtons.forEach(btn => btn.classList.remove('active'));
+                // Añadir clase active al botón clickeado
+                button.classList.add('active');
+                
+                const category = button.dataset.category;
+                const galleryItems = document.querySelectorAll('.galeria-item');
+                
+                galleryItems.forEach(item => {
+                    if (category === 'todos' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
         });
-
-        // Maneja el clic en el logo de Chevrolet
-        document.getElementById("logoChevrolet").addEventListener("click", () => {
-            window.location.hash = "#chevrolet";
+        
+        // Formulario de contacto
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Aquí iría el código para enviar el formulario
+            // Por ahora solo mostraremos una alerta
+            alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+            contactForm.reset();
         });
+        
+        // Formulario de testimonios
+        const testimonialForm = document.getElementById('testimonialForm');
+        
+        testimonialForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Aquí iría el código para enviar el testimonio
+            alert('¡Gracias por compartir tu experiencia con nosotros! Tu testimonio es muy valioso.');
+            testimonialForm.reset();
+        });
+        
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animación al hacer scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.servicio-card, .testimonial-card, .galeria-item, .contacto-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Establecer propiedades iniciales para la animación
+        document.querySelectorAll('.servicio-card, .testimonial-card, .galeria-item, .contacto-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
